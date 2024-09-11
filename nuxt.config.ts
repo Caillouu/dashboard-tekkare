@@ -4,7 +4,7 @@ export default defineNuxtConfig({
     baseURL: '/dashboard-tekkare/'
   },
   compatibilityDate: '2024-04-03',
-  devtools: { enabled: true },
+  // devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt'],
   shadcn: {
     /**
@@ -16,5 +16,8 @@ export default defineNuxtConfig({
      * @default "./components/ui"
      */
     componentDir: './components/ui'
-  }
+  },
+  components: [
+    { path: '~/components/ui', extensions: ['vue'] }
+  ],
 })
