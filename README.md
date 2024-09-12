@@ -1,75 +1,74 @@
-# Nuxt 3 Minimal Starter
+# Dashboard Tekkare
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Visible in production at `https://caillouu.github.io/dashboard-tekkare/`
 
-## Setup
+## Stack
 
-Make sure to install the dependencies:
+### Core
+
+- [TypeScript](https://www.typescriptlang.org)
+- [VueJS](https://vuejs.org/)
+- [NuxtJS](https://nuxt.com/)
+
+### UI
+
+- [Tailwind](https://tailwindcss.com)
+- [Shadcn](https://shadcn.com)
+
+## Conventions
+
+### Commit
+
+Commits must follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) convention.
+
+### Code
+
+Code must follow:
+
+- [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
+- [VueJS Style Guide](https://vuejs.org/style-guide/)
+
+## Usage
+
+Only npm is accepted as a package manager.
+
+### Install
+
+Run this command at the root of the project.
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
+### Development
 
-Start the development server on `http://localhost:3000`:
+Run this command at the root of the project, it will start the development mode for every app.
+Start the development server on `http://localhost:3000/dashboard-tekkare/`:
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+### Build
 
-Build the application for production:
+Run this command at the root of the project, it will build every app.
 
 ```bash
-# npm
 npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
+### Deploy in production
+
+Commit your change
 
 ```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+git commit -m "feat: My message"
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+And it's auto-deploy in production at `https://caillouu.github.io/dashboard-tekkare/`
+
+## How To
+
+### How to install a new package in an app?
+
+Navigate to the app folder and run the `npm install <package>` command.
