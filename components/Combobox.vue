@@ -13,7 +13,6 @@
   const selectedHospital = ref<{ name: string } | null>(null);
 
   function onSelect(hospital: { name: string }) {
-    console.log(hospital);
     selectedHospital.value = hospital;
     open.value = false;
     emit('select-hospital', hospital);
@@ -32,7 +31,7 @@
             {{ selectedHospital.name }}
           </template>
           <template v-else>
-            + Choose Hospital
+            + Choisir Hôpital
           </template>
         </Button>
       </PopoverTrigger>

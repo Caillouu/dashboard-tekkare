@@ -3,7 +3,7 @@
   import Combobox from '@/components/Combobox.vue'
   import DonutCircleChart from '~/components/DonutCircleChart.vue';
   import SimpleBarChart from '~/components/SimpleBarChart.vue';
-  import { ref } from 'vue'
+  import { ref, computed } from 'vue'
   import PieProgressChart from '~/components/PieProgressChart.vue';
   import AreaYearChart from '~/components/AreaYearChart.vue';
   import { Heart, Hospital, CornerRightUp, UsersRound, Stethoscope, Activity, Calendar, CalendarClock, Dna } from 'lucide-vue-next'
@@ -33,8 +33,29 @@
   const hospitals = ref(hospitalData)
   const selectedHospital = ref<Hospital | null>(null)
 
+  const showOnlyInProgress = ref(false)
+
   function onSelectHospital(hospital: any) {
     selectedHospital.value = hospital
+  }
+
+  const filteredTrials = computed(() => {
+    if (selectedHospital.value && showOnlyInProgress.value) {
+      return selectedHospital.value.clinicalTrials.filter(trial => trial.status === 'En cours')
+    }
+    return selectedHospital.value ? selectedHospital.value.clinicalTrials : []
+  })
+
+  watch(selectedHospital, (newValue) => {
+    if (newValue) {
+      // Mettre à jour la propriété filteredTrials
+      filteredTrials.value = newValue.clinicalTrials
+    }
+  })
+
+
+  const toggleFilter = () => {
+    showOnlyInProgress.value = !showOnlyInProgress.value
   }
 
 </script>
@@ -145,17 +166,23 @@
             </CardContent>
           </Card>
           <Card class="col-span-12 lg:row-start-2 lg:row-end-3 lg:col-span-6">
-            <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-6">
+            <CardHeader class="relative flex flex-col items-start justify-between space-y-0 pb-6 md:flex-row md:items-center">
               <CardTitle><h2>Essais cliniques</h2></CardTitle>
-              <Dna class="w-5 h-5 text-muted-foreground" />
+              <div class="flex items-center ml-auto md:mr-6">
+                <span class="text-xs mr-2">Filtrer seulement :</span>
+                <button @click="toggleFilter"><Badge :variant="showOnlyInProgress ? 'default' : 'secondary'">En cours</Badge></button>
+              </div>
+              <Dna class="w-5 h-5 text-muted-foreground absolute right-6 top-6 md:relative md:top-auto md:right-auto" />
             </CardHeader>
             <CardContent>
               <ScrollArea type="always" class="h-[220px] w-full lg:h-[150px]">
                 <div class="space-y-8">
-                  <div v-for="trial in selectedHospital.clinicalTrials" :key="trial.name" class="space-y-8">
+                  <div v-for="trial in filteredTrials" :key="trial.name" class="space-y-8">
                     <div class="flex items-center">
                       <div class="h-9 w-9 relative bg-slate-200 rounded-full">
-                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xs uppercase font-semibold">{{Array.from(trial.name)[0] }}</div>
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xs uppercase font-semibold">
+                          {{Array.from(trial.name)[0] }}
+                        </div>
                       </div>
                       <div class="ml-4 space-y-1">
                         <p class="text-sm font-medium leading-none">
