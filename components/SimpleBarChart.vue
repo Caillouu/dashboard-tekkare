@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import { Progress } from '@/components/ui/progress'
+
   defineProps({
     level: {
       type: String,
@@ -8,12 +10,8 @@
 </script>
 
 <template>
-  <div class="relative bg-slate-200 w-full h-full">
-    <div class="absolute duration-500 bg-primary w-full h-full bottom-0 left-0" :style="{ height: `${level}` }"></div>
-    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white">{{ level }}</div>
+  <div class="relative ml-auto w-32 shrink-0">
+    <Progress class="w-full duration-500" v-bind:modelValue="parseFloat(level.replace('%', ''))" />
+    <div class="absolute top-0 left-0 right-0 w-full text-white text-xs text-center">{{ level }}</div>
   </div>
 </template>
-
-<style>
-
-</style>

@@ -104,6 +104,11 @@
         "department": "Neurologie",
         "patientsPerDay": 60,
         "averageWaitTime": "35 min"
+      },
+      {
+        "department": "Oncologie",
+        "patientsPerDay": 20,
+        "averageWaitTime": "45 min"
       }
     ]
   },

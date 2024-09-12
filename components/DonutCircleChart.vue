@@ -1,24 +1,40 @@
 <script setup lang="ts">
   import { DonutChart } from '@/components/ui/chart-donut'
 
-  const props = defineProps({
-    data: {
-      type: Array,
-      required: true,
-      default: () => []
-    }
-  })
+  interface DataItem {
+    label: string;
+    value: number;
+  }
 
-  const chartData = props.data ? props.data.map((item) => ({
+  interface ChartDataItem {
+    name: string;
+    total: number;
+  }
+
+  interface Props {
+    data: DataItem[];
+  }
+
+  const props = defineProps<Props>();
+
+  const chartData: ChartDataItem[] = props.data ? props.data.map((item) => ({
     name: item.label,
     total: item.value
   })) : [];
-</script>
+
+  const totals = computed(() => {
+    return chartData.reduce((acc, item) => acc + item.total, 0)
+  })
+  </script>
 
 <template>
-  <DonutChart
-    index="name"
-    :category="'total'"
-    :data="chartData"
-  />
+  <div class="relative">
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white z-10 text-2xl font-semibold">{{ totals }}</div>
+    <DonutChart
+      class="w-64"
+      index="name"
+      :category="'total'"
+      :data="chartData"
+    />
+  </div>
 </template>
