@@ -40,30 +40,34 @@
 </script>
 
 <template>
-  <div class="flex-1 p-8 pt-6">
-    <div class="flex items-center pb-8">
-      <h1 class="text-3xl font-bold mr-4">Dashboard</h1>
-      <div class="relative">
-        <Combobox :hospitals="hospitals" @select-hospital="onSelectHospital" />
-        <div v-if="!selectedHospital" class="absolute top-full right-16 mt-4">
-          <Badge>Sélectionner un hôpital <CornerRightUp class="w-3 h-3 ml-1" /></Badge>
+  <div class="flex-1 p-4 pt-6 lg:p-8">
+    <div class="pb-8 lg:flex">
+      <div class="items-center md:flex">
+        <h1 class="text-xl font-bold mr-4 lg:text-3xl">Tableau de bord</h1>
+        <div class="relative">
+          <Combobox :hospitals="hospitals" @select-hospital="onSelectHospital" />
+          <div v-if="!selectedHospital" class="absolute top-full w-full mt-4 md:right-16">
+            <Badge><div class="w-full">Sélectionner un hôpital</div> <CornerRightUp class="h-3 ml-1" /></Badge>
+          </div>
         </div>
       </div>
-      <div v-if="selectedHospital" class="flex items-center ml-6">
-        <Hospital class="w-6 h-6" />
-        <p class="ml-4 mt-auto text-s">({{ selectedHospital.location }})</p>
-      </div>
-      <div v-if="selectedHospital" class="ml-auto">
-        <div class="text-xs text-center w-32">Niveau de satisfaction</div>
-        <div class="flex items-center space-x-2">
-          <SimpleBarChart :level="selectedHospital.overview.satisfactionRate.toString()" />
-          <Heart class="w-5 h-5 text-primary shrink-0" />
+      <div v-if="selectedHospital" class="items-center flex-1 mt-4 lg:mt-0 md:flex">
+        <div class="flex items-center lg:ml-6">
+          <Hospital class="w-6 h-6" />
+          <p class="ml-4 mt-auto text-s">({{ selectedHospital.location }})</p>
+        </div>
+        <div class="ml-auto mt-8 md:mt-0">
+          <div class="text-xs text-center w-32">Niveau de satisfaction</div>
+          <div class="flex items-center space-x-2">
+            <SimpleBarChart :level="selectedHospital.overview.satisfactionRate.toString()" />
+            <Heart class="w-5 h-5 text-primary shrink-0" />
+          </div>
         </div>
       </div>
     </div>
     <div v-if="selectedHospital">
-      <div class="grid grid-rows-3 md:grid-cols-5 lg:grid-cols-12 gap-4">
-          <Card class="lg:col-span-3 h-auto">
+      <div class="inline-grid grid-cols-12 gap-4 w-full">
+          <Card class="col-span-12 h-auto lg:col-span-3 md:col-span-6">
             <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-6">
               <CardTitle class="text-center"><h2>Employés</h2></CardTitle>
               <Stethoscope class="w-5 h-5 text-muted-foreground" />
@@ -80,7 +84,7 @@
               </div>
             </CardContent>
           </Card>
-          <Card class="lg:col-span-3 h-auto">
+          <Card class="col-span-12 h-auto lg:col-span-3 md:col-span-6">
             <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-6">
               <CardTitle class="text-center"><h2>Patients</h2></CardTitle>
               <UsersRound class="w-5 h-5 text-muted-foreground" />
@@ -97,7 +101,7 @@
               </div>
             </CardContent>
           </Card>
-          <Card class="lg:col-span-6 h-auto">
+          <Card class="col-span-12 lg:col-span-6 h-auto">
             <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-6">
               <CardTitle><h2>Spécialités des médecins</h2></CardTitle>
               <Activity class="w-5 h-5 text-muted-foreground" />
@@ -109,14 +113,14 @@
               />
             </CardContent>
           </Card>
-          <Card class="row-start-2 row-end-3 md:col-span-2 lg:col-span-6">
+          <Card class="col-span-12 lg:row-start-3 lg:row-end-4 lg:col-span-6">
             <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-6">
               <CardTitle><h2>Départements de l'hôpital</h2></CardTitle>
               <CalendarClock class="w-5 h-5 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div class="text-right text-xs">Temps d'attente moyen</div>
-              <ScrollArea class="h-[180px] w-full">
+              <ScrollArea type="always" class="h-[220px] w-full lg:h-[150px]">
                 <div class="space-y-8">
                   <div v-for="dept in selectedHospital.hospitalDepartments" :key="dept.department" class="space-y-8">
                     <div class="flex items-center">
@@ -140,13 +144,13 @@
               </ScrollArea>
             </CardContent>
           </Card>
-          <Card class="row-start-3 row-end-4 md:col-span-2 lg:col-span-6">
+          <Card class="col-span-12 lg:row-start-2 lg:row-end-3 lg:col-span-6">
             <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-6">
               <CardTitle><h2>Essais cliniques</h2></CardTitle>
               <Dna class="w-5 h-5 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <ScrollArea class="h-[180px] w-full">
+              <ScrollArea type="always" class="h-[220px] w-full lg:h-[150px]">
                 <div class="space-y-8">
                   <div v-for="trial in selectedHospital.clinicalTrials" :key="trial.name" class="space-y-8">
                     <div class="flex items-center">
@@ -175,7 +179,7 @@
               </ScrollArea>
             </CardContent>
           </Card>
-          <Card class="row-start-2 row-end-4 lg:col-span-6">
+          <Card class="col-span-12 lg:row-start-2 lg:row-end-4 lg:col-span-6">
             <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-6">
               <CardTitle><h2>Hospitalisation mensuelles</h2></CardTitle>
               <Calendar class="w-5 h-5 text-muted-foreground" />

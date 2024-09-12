@@ -5,7 +5,7 @@
         <img src="assets/img/logo.svg" class="h-6 w-auto" alt="Tekkare">
       </a>
     </div>
-    <div class="container relative mb-12">
+    <div class="container relative mb-12 px-4">
       <div class="overflow-hidden rounded-[0.5rem] border bg-background shadow">
         <slot />
       </div>

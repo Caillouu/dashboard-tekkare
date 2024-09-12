@@ -26,7 +26,7 @@
       <PopoverTrigger as-child>
         <Button
           variant="ghost"
-          class="justify-start text-3xl font-bold border-cyan-900 border-b rounded-none	"
+          class="justify-start text-xl font-bold border-cyan-900 border-b rounded-none p-0 lg:text-3xl"
         >
           <template v-if="selectedHospital">
             {{ selectedHospital.name }}

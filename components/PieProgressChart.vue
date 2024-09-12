@@ -33,7 +33,7 @@
 </script>
 
 <template>
-  <div class="flex justify-start items-center">
+  <div class="flex justify-center items-center flex-wrap">
     <DonutChart
       class="w-64"
       index="name"
@@ -42,13 +42,13 @@
       :type="'pie'"
       :colors="chartColors"
     />
-    <div class="flex-1">
+    <div class="flex-1 min-w-72">
       <span class="float-right text-xs w-32 text-center">Satisfaction</span>
       <ul class="clear-right">
         <li v-for="(item, index) in chartData" :key="index" :style="{ color: item.color }">
           <div class="flex items-center">
-            <div class="w-2 h-2 rounded-full mr-2" :style="{ backgroundColor: chartColors[index] }"></div>
-            <span class="font-medium" :style="{ color: chartColors[index] }">{{ item.name }}</span>
+            <div class="shrink-0 w-2 h-2 rounded-full mr-2" :style="{ backgroundColor: chartColors[index] }"></div>
+            <div class="shrink-0 font-medium" :style="{ color: chartColors[index] }">{{ item.name }}</div>
             <div class="relative ml-auto">
               <Progress class="w-32" v-bind:modelValue="parseFloat(item.rate.replace('%', ''))" />
               <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-xs">{{ item.rate }}</div>
