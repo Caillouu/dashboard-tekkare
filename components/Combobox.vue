@@ -35,7 +35,7 @@
           </template>
         </Button>
       </PopoverTrigger>
-      <PopoverContent class="p-0" side="right" align="start">
+      <PopoverContent class="p-0 w-4/5 transform -translate-x-1/2 sm:w-full sm:translate-x-0" side="right" align="start">
         <Command>
           <CommandInput :placeholder="$t('SearchHospital')" />
           <CommandList>
