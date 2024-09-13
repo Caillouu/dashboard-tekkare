@@ -91,8 +91,8 @@
                 <DonutCircleChart
                   :key="selectedHospital.id"
                   :data="[
-                    { label: `{{ $t('Doctors') }}`, value: selectedHospital.overview.numberOfDoctors },
-                    { label: `{{ $t('Nurses') }}`, value: selectedHospital.overview.numberOfNurses }
+                    { label: $t('Doctors'), value: selectedHospital.overview.numberOfDoctors },
+                    { label: $t('Nurses'), value: selectedHospital.overview.numberOfNurses }
                   ]"
                 />
               </div>
@@ -108,8 +108,8 @@
                 <DonutCircleChart
                   :key="selectedHospital.id"
                   :data="[
-                    { label: `{{ $t('WithoutTreatments') }}`, value: selectedHospital.overview.totalPatients - selectedHospital.overview.totalTreatments },
-                    { label: `{{ $t('Treatments') }}`, value: selectedHospital.overview.totalTreatments }
+                    { label: $t('WithoutTreatments'), value: selectedHospital.overview.totalPatients - selectedHospital.overview.totalTreatments },
+                    { label: $t('Treatments'), value: selectedHospital.overview.totalTreatments }
                   ]"
                 />
               </div>
