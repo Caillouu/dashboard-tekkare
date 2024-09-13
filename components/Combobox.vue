@@ -31,15 +31,15 @@
             {{ selectedHospital.name }}
           </template>
           <template v-else>
-            + Choisir Hôpital
+            + {{ $t('ChooseHospital') }}
           </template>
         </Button>
       </PopoverTrigger>
       <PopoverContent class="p-0" side="right" align="start">
         <Command>
-          <CommandInput placeholder="Change status..." />
+          <CommandInput :placeholder="$t('SearchHospital')" />
           <CommandList>
-            <CommandEmpty>No results found.</CommandEmpty>
+            <CommandEmpty>{{ $t('NoResults') }}</CommandEmpty>
             <CommandGroup>
               <CommandItem
                 v-for="hospital in hospitals"

@@ -5,7 +5,20 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2024-04-03',
   // devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt'],
+  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt',
+    [
+      '@nuxtjs/i18n',
+      {
+        defaultLocale: 'fr',
+        locales: [
+          { code: 'fr', iso: 'fr-FR', file: 'fr.json' },
+          { code: 'en', iso: 'en-US', file: 'en.json' },
+        ],
+        lazy: true,
+        langDir: 'i18n/locales',
+      },
+    ],
+  ],
   shadcn: {
     /**
      * Prefix for all the imported component
