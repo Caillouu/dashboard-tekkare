@@ -10,7 +10,7 @@ const props = defineProps({
   }
 })
 
-const chartData = ref([])
+const chartData = ref<{ [key: string]: string | number; name: string }[]>([]);
 const years = ref<string[]>([])
 
 const processData = computed(() => {

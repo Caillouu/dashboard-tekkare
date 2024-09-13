@@ -6,7 +6,7 @@
   import { ref, computed } from 'vue'
   import PieProgressChart from '~/components/PieProgressChart.vue';
   import AreaYearChart from '~/components/AreaYearChart.vue';
-  import { Heart, Hospital, CornerRightUp, UsersRound, Stethoscope, Activity, Calendar, CalendarClock, Dna } from 'lucide-vue-next'
+  import { Hospital, CornerRightUp, UsersRound, Stethoscope, Activity, Calendar, CalendarClock, Dna } from 'lucide-vue-next'
   import Badge from '~/components/ui/badge/Badge.vue';
   import { ScrollArea } from '@/components/ui/scroll-area'
 
@@ -75,7 +75,6 @@
           <div class="text-xs text-center w-32">{{ $t('SatisfactionLevel') }}</div>
           <div class="flex items-center space-x-2">
             <SimpleBarChart :level="selectedHospital.overview.satisfactionRate.toString()" />
-            <Heart class="w-5 h-5 text-primary shrink-0" />
           </div>
         </div>
       </div>
