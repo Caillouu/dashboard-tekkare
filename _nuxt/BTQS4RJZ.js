@@ -1,0 +1,1 @@
+import{_ as s,c as a,a as o,n as l,o as n}from"./DLmIokbs.js";const r={};function c(t,e){return n(),a("div",null,[e[0]||(e[0]=o("p",null,"This is the default layout",-1)),l(t.$slots,"default")])}const f=s(r,[["render",c]]);export{f as default};
